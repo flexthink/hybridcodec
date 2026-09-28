@@ -3,6 +3,23 @@
 HybridCodec encodes speech into a discrete semantic stream and an optional
 continuous residual stream, then decodes those streams back into audio.
 
+## Available Hugging Face models
+
+These HybridCodec model repositories are available from the
+[hybridcodec Hugging Face organization](https://huggingface.co/hybridcodec):
+
+| Training variant | Semantic rate | Hugging Face model |
+| --- | ---: | --- |
+| Fine-tune | 12.5 Hz | [hybridcodec_finetune_12_5hz](https://huggingface.co/hybridcodec/hybridcodec_finetune_12_5hz) |
+| Fine-tune | 25 Hz | [hybridcodec_finetune_25hz](https://huggingface.co/hybridcodec/hybridcodec_finetune_25hz) |
+| Fine-tune | 50 Hz | [hybridcodec_finetune_50hz](https://huggingface.co/hybridcodec/hybridcodec_finetune_50hz) |
+| Frozen | 12.5 Hz | [hybridcodec_frozen_12_5hz](https://huggingface.co/hybridcodec/hybridcodec_frozen_12_5hz) |
+| Frozen | 25 Hz | [hybridcodec_frozen_25hz](https://huggingface.co/hybridcodec/hybridcodec_frozen_25hz) |
+| Frozen | 50 Hz | [hybridcodec_frozen_50hz](https://huggingface.co/hybridcodec/hybridcodec_frozen_50hz) |
+| Scratch | 6.25 Hz | [hybridcodec_scratch_6_25hz](https://huggingface.co/hybridcodec/hybridcodec_scratch_6_25hz) |
+| Scratch | 25 Hz | [hybridcodec_scratch_25hz](https://huggingface.co/hybridcodec/hybridcodec_scratch_25hz) |
+| Scratch | 50 Hz | [hybridcodec_scratch_50hz](https://huggingface.co/hybridcodec/hybridcodec_scratch_50hz) |
+
 ## Load a pretrained codec
 
 Install this package and its dependencies, then load the model from its local
