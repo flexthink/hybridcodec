@@ -28,6 +28,13 @@ from torch.cuda.amp import autocast
 from torch.nn import Module
 from torch.nn import Conv1d, ConvTranspose1d, AvgPool1d, Conv2d
 from torch.nn.utils import weight_norm, remove_weight_norm, spectral_norm
+from safetensors.torch import load_file as load_safetensors_file
+from speechbrain.utils.checkpoints import (
+    hook_on_loading_state_dict_checkpoint,
+    mark_as_transfer,
+    register_checkpoint_hooks,
+    torch_patched_state_dict_load,
+)
 
 if TYPE_CHECKING:
     from speechbrain.integrations.huggingface.wavlm import WavLM
@@ -698,6 +705,7 @@ class LookupFreeQuantizer(nn.Module):
 # =============================================================================
 
 
+@register_checkpoint_hooks
 class SingleLayerResidualQuantizer(nn.Module):
     """Discrete semantic + continuous residual on a single feature layer."""
 
@@ -773,6 +781,23 @@ class SingleLayerResidualQuantizer(nn.Module):
         )
 
         self._latents: Optional[Tensor] = None
+
+    @mark_as_transfer
+    def load_pretrained(self, path: str | Path) -> None:
+        """Load quantizer parameters from a SpeechBrain or safetensors file.
+
+        Arguments
+        ---------
+        path : str or Path
+            Checkpoint path ending in ``.ckpt`` or ``.safetensors``.
+        """
+        checkpoint_path = Path(path)
+        if checkpoint_path.suffix == ".safetensors":
+            state_dict = load_safetensors_file(str(checkpoint_path), device="cpu")
+            state_dict = hook_on_loading_state_dict_checkpoint(state_dict)
+        else:
+            state_dict = torch_patched_state_dict_load(checkpoint_path, device="cpu")
+        self.load_state_dict(state_dict, strict=True)
 
     def forward(self, feats: Tensor) -> Tuple[Tensor, Tensor, Tensor]:
         """Quantize features and reconstruct semantic and residual content.

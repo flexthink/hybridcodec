@@ -12,7 +12,7 @@ Hugging Face package directory or Hub repository:
 import torch
 from hybridcodec.inference import HybridCodec
 
-codec = HybridCodec.from_hparams(source="owner/hybridcodec")
+codec = HybridCodec.from_hparams(source="hybridcodec/hybridcodec_finetune_12_5hz")
 # For a local package directory, use:
 # codec = HybridCodec.from_hparams(source="/path/to/hybridcodec")
 
@@ -47,5 +47,20 @@ Please cite our Interspeech 2026 paper:
   pages     = {2730--2735},
   doi       = {10.21437/Interspeech.2026-2784},
   issn      = {2958-1796},
+}
+```
+
+This implementation makes use of the SpeechBrain framework. If you use HybridCodec in your research or applications, please also cite SpeechBrain:
+
+```bibtex
+@article{JMLR:v25:24-0991,
+  author  = {Mirco Ravanelli and Titouan Parcollet and Adel Moumen and Sylvain de Langen and Cem Subakan and Peter Plantinga and Yingzhi Wang and Pooneh Mousavi and Luca Della Libera and Artem Ploujnikov and Francesco Paissan and Davide Borra and Salah Zaiem and Zeyu Zhao and Shucong Zhang and Georgios Karakasidis and Sung-Lin Yeh and Pierre Champion and Aku Rouhe and Rudolf Braun and Florian Mai and Juan Zuluaga-Gomez and Seyed Mahed Mousavi and Andreas Nautsch and Ha Nguyen and Xuechen Liu and Sangeet Sagar and Jarod Duret and Salima Mdhaffar and Ga{{\"e}}lle Laperri{{\`e}}re and Mickael Rouvier and Renato De Mori and Yannick Est{{\`e}}ve},
+  title   = {Open-Source Conversational AI with SpeechBrain 1.0},
+  journal = {Journal of Machine Learning Research},
+  year    = {2024},
+  volume  = {25},
+  number  = {333},
+  pages   = {1--11},
+  url     = {http://jmlr.org/papers/v25/24-0991.html}
 }
 ```
