@@ -3,7 +3,8 @@
 Hybrid Codec – Same-Layer Variant (WavLM Layer 6)
 
 Includes code from KNNVC and FocalCodec
-(TODO: References)
+https://github.com/bshall/knn-vc
+https://github.com/lucadellalib/focalcodec
 
 Authors
 * Francesco Verdini 2025 (codec)
